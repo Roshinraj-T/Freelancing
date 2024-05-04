@@ -5,9 +5,14 @@
 @import "./styles/component.scss";
 @import "./styles/primeng";
 
-body{
+*{
     font-family: $font-primary;
-    color: $primary-color;
+    p{
+        margin: 0;
+    }
+}
+.container{
+    width: 1200px;
 }
 
 
