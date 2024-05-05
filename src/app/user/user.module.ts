@@ -10,7 +10,7 @@ import { ProfileComponent } from './profile/profile.component';
 @NgModule({
   declarations: [
     MainLayoutComponent,
-    ProfileComponent
+    ProfileComponent,
   ],
   imports: [
     CommonModule,

@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { IMaster } from 'src/app/core/interface';
 
 @Component({
@@ -13,15 +14,15 @@ export class MainLayoutComponent implements OnInit{
     {
       id: 1,
       name: 'Post a job',
-      route : ''
+      route : 'client'
     },
     {
-      id: 1,
-      name: 'My works',
-      route : ''
+      id: 2,
+      name: 'My Jobs',
+      route : 'client/my-jobs'
     },
     {
-      id: 1,
+      id: 3,
       name: 'My fav workers',
       route : ''
     }];
@@ -29,21 +30,23 @@ export class MainLayoutComponent implements OnInit{
   [
     {
       id: 1,
-      name: 'Post a job'
+      name: 'Find a job'
     },
     {
-      id: 1,
+      id: 2,
       name: 'My works'
     }];
   tabs : IMaster[] = [];
   selectedTab : number = 0;
   constructor (
+    private router : Router
   ){
 
   }
   ngOnInit(): void {
     if(localStorage.getItem('roleId') && (localStorage.getItem('roleId') == '1')){
       this.tabs = this.clientTabs;
+      this.router.navigate(['user/client'])
     } else{
       this.tabs = this.freelancerTabs;
     }

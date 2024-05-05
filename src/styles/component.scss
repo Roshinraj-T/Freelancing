@@ -31,4 +31,17 @@
 }
 .p-inputtext, .p-dropdown{
     width: 100% !important;
+    box-shadow: none;
+}
+
+/* For Chrome, Edge, Safari */
+input[type='number']::-webkit-outer-spin-button,
+input[type='number']::-webkit-inner-spin-button {
+  -webkit-appearance: none; /* Hides the spinner in WebKit-based browsers */
+  margin: 0;
+}
+
+/* For Firefox */
+input[type='number'] {
+  -moz-appearance: textfield; /* Disables increment/decrement in Firefox */
 }

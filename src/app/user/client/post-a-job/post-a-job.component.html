@@ -1,0 +1,103 @@
+<div id="post-a-job">
+    <div class="post-a-job-section">
+        <div class="slogan-section">
+            <div class="slogans">
+                <p class="slogan">
+                    Find the Perfect Fit.
+                </p>
+                <p class="slogan">
+                    Connect with Qualified Talent.
+                </p>
+                <div class="post-job-btn">
+                    <p-button class="custom-btn" label="Post a job" (onClick)="postJobVisible = true"></p-button>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+<p-dialog header="Post a Job" [(visible)]="postJobVisible" [modal]="true" (onHide)="postJobForm.reset();postJobVisible = false" [style]="{width: '50vw',height : '610px'}">
+    <div class="add-job-form-section">
+        <form action="" [formGroup]="postJobForm" class="post-a-job-form-section">
+            <div class="form-section">
+                <div class="form-group">
+                    <label for="professionId">Job Category :</label>
+                    <div class="form-input">
+                        <p-dropdown  formControlName="professionId" [options]="professions" optionLabel="name" optionValue="id" placeholder="Select a Profession"></p-dropdown>
+                        <div class="error-indication"
+                            *ngIf="postJobForm.get('professionId')?.invalid && postJobForm.get('professionId')?.touched">
+                            Profession is required.
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="description">Description :</label>
+                    <div class="form-input">
+                        <textarea rows="3" cols="30" (paste)="false" (keypress)="lengthChecker(500)"  pInputTextarea formControlName="description"></textarea>
+                        <div class="error-indication"
+                            *ngIf="postJobForm.get('description')?.invalid && postJobForm.get('description')?.touched">
+                            description is required.
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="locationId">Location :</label>
+                    <div class="form-input">
+                        <p-dropdown id="locationId" appendTo="body" formControlName="locationId" [options]="locations" optionLabel="name" optionValue="id" placeholder="Select a Location"></p-dropdown>
+                        <div class="error-indication"
+                            *ngIf="postJobForm.get('locationId')?.invalid && postJobForm.get('locationId')?.touched">
+                            Location is required.
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="jobTypeId">Job Type :</label>
+                    <div class="form-input">
+                        <p-dropdown appendTo="body"  formControlName="jobTypeId" [options]="jobTypes" optionLabel="name" optionValue="id" placeholder="Select a Job Category"></p-dropdown>
+                        <div class="error-indication"
+                            *ngIf="postJobForm.get('jobTypeId')?.invalid && postJobForm.get('jobTypeId')?.touched">
+                            Job Type is required.
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="durationOptionId">Job Duration :</label>
+                    <div class="form-input">
+                        <p-dropdown appendTo="body" formControlName="durationOptionId" [options]="durationOptions" optionLabel="name" optionValue="id" placeholder="Select a Job Duration"></p-dropdown>
+                        <div class="error-indication"
+                            *ngIf="postJobForm.get('durationOptionId')?.invalid && postJobForm.get('durationOptionId')?.touched">
+                            Job Duration is required.
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="experienceLevelId">Experience Level:</label>
+                    <div class="form-input">
+                        <p-dropdown id="experienceLevelId" appendTo="body" formControlName="experienceLevelId" [options]="experiences" optionLabel="name" optionValue="id" placeholder="Select a Experience level"></p-dropdown>
+                        <div class="error-indication"
+                            *ngIf="postJobForm.get('experienceLevelId')?.invalid && postJobForm.get('experienceLevelId')?.touched">
+                            Experience level is required.
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="form-group">
+                    <label for="address">Address :</label>
+                    <div class="form-input">
+                        <textarea rows="3" (paste)="false" cols="30" (keypress)="lengthChecker(500)"  pInputTextarea formControlName="address"></textarea>
+                        <div class="error-indication"
+                            *ngIf="postJobForm.get('address')?.invalid && postJobForm.get('address')?.touched">
+                            Address is required.
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+    <ng-template pTemplate="footer">
+        <div class="sign-up-btn">
+            <p-button class="custom-btn" label="Submit" (onClick)="postAJobAction()"></p-button>
+        </div>
+    </ng-template>
+</p-dialog>

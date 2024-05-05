@@ -6,6 +6,8 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { CardModule } from 'primeng/card';
 import { DropdownModule } from 'primeng/dropdown';
 import { ToastModule } from 'primeng/toast';
+import { DialogModule } from 'primeng/dialog';
+import { InputTextareaModule } from 'primeng/inputtextarea';
 @NgModule({
   declarations: [],
   imports: [
@@ -16,7 +18,9 @@ import { ToastModule } from 'primeng/toast';
     FormsModule,
     CardModule,
     DropdownModule,
-    ToastModule
+    ToastModule,
+    DialogModule,
+    InputTextareaModule
   ],
   exports:[
     ButtonModule,
@@ -25,7 +29,9 @@ import { ToastModule } from 'primeng/toast';
     FormsModule,
     CardModule,
     DropdownModule,
-    ToastModule
+    ToastModule,
+    DialogModule,
+    InputTextareaModule
   ]
 })
 export class SharedModule { }

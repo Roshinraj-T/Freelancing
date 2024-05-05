@@ -17,7 +17,15 @@ export class ApiServiceService {
     return this.http.get<IMaster[]>(environment.apiUrl + apiEndpoint)
   }
 
+  getById(apiEndpoint : string,id?:string): Observable <ApiResponse>{
+    return this.http.get<ApiResponse>(environment.apiUrl + apiEndpoint+`/${id}`)
+  }
+
   signUp(apiEndpoint : string,data:any) : Observable <ApiResponse> {
+    return this.http.post<ApiResponse>(environment.apiUrl + apiEndpoint,data)
+  }
+
+  postAJob(apiEndpoint : string,data:any): Observable <ApiResponse>{
     return this.http.post<ApiResponse>(environment.apiUrl + apiEndpoint,data)
   }
 }

@@ -3,5 +3,8 @@ export const API_LIST = {
     'getProfessionData' : 'user/getProfessionData',
     'getExperienceLevelData' : 'user/getExperienceLevelData',
     'getLocationData' : 'user/getLocationData',
-    'signUp' : 'registration/signUp'
+    'signUp' : 'registration/signUp',
+    'postAJob' : 'user/postAJob',
+    'getJobType' : 'user/getJobType',
+    'getMyJobs' : 'user/getMyJobs'
 }

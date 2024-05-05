@@ -66,7 +66,7 @@
                     <div class="form-group">
                         <label for="phoneNumber">Phone Number:</label>
                         <div class="form-input">
-                            <input id="phoneNumber" formControlName="phoneNumber" appDigitsOnly type="text"  maxlength="10" pInputText />
+                            <input id="phoneNumber" formControlName="phoneNumber" appDigitsOnly type="number"  maxlength="10" pInputText />
                             <div class="error-indication"
                                 *ngIf="signUpForm.get('phoneNumber')?.invalid && signUpForm.get('phoneNumber')?.touched">
                                 Phone number is required.
@@ -77,7 +77,7 @@
                     <div class="form-group">
                         <label for="locationId">Location:</label>
                         <div class="form-input">
-                            <p-dropdown id="locationId" formControlName="locationId" [options]="locations" optionLabel="name" optionValue="id" placeholder="Select a Location"></p-dropdown>
+                            <p-dropdown appendTo="body" id="locationId" formControlName="locationId" [options]="locations" optionLabel="name" optionValue="id" placeholder="Select a Location"></p-dropdown>
                             <div class="error-indication"
                                 *ngIf="signUpForm.get('locationId')?.invalid && signUpForm.get('locationId')?.touched">
                                 Location is required.
@@ -88,7 +88,7 @@
                     <div class="form-group" *ngIf="selectedRole === 'Freelancer'">
                         <label for="professionId">Profession:</label>
                         <div class="form-input">
-                            <p-dropdown id="professionId" formControlName="professionId" [options]="professions" optionLabel="name" optionValue="id" placeholder="Select a Profession"></p-dropdown>
+                            <p-dropdown appendTo="body" id="professionId" formControlName="professionId" [options]="professions" optionLabel="name" optionValue="id" placeholder="Select a Profession"></p-dropdown>
                             <div class="error-indication"
                                 *ngIf="signUpForm.get('professionId')?.invalid && signUpForm.get('professionId')?.touched">
                                 Profession is required.
@@ -99,7 +99,7 @@
                     <div class="form-group" *ngIf="selectedRole === 'Freelancer'">
                         <label for="experienceLevelId">Experience Level:</label>
                         <div class="form-input">
-                            <p-dropdown id="experienceLevelId" formControlName="experienceLevelId" [options]="experiences" optionLabel="name" optionValue="id" placeholder="Select a Experience level"></p-dropdown>
+                            <p-dropdown appendTo="body" id="experienceLevelId" formControlName="experienceLevelId" [options]="experiences" optionLabel="name" optionValue="id" placeholder="Select a Experience level"></p-dropdown>
                             <div class="error-indication"
                                 *ngIf="signUpForm.get('experienceLevelId')?.invalid && signUpForm.get('experienceLevelId')?.touched">
                                 Experience level is required.

@@ -4,7 +4,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { MessageService } from 'primeng/api';
 import { API_LIST } from 'src/app/core/apiList';
-import { ApiResponse, IMaster } from 'src/app/core/interface';
+import {  IMaster } from 'src/app/core/interface';
 import { ApiServiceService } from 'src/app/service/api-service.service';
 import { UtilServiceService } from 'src/app/utils/util-service.service';
 
@@ -40,19 +40,37 @@ export class SignupComponent  implements OnInit{
     this.getLocationData();
   }
   getProfessionData(){
-    this.apiService.getMaster(API_LIST.getProfessionData).subscribe((response)=>{
-      this.professions = response
-    })
+    this.apiService.getMaster(API_LIST.getProfessionData).subscribe(
+      {
+        next:(response)=>{
+          this.professions = response
+        },
+        error : (err:Error)=>{
+          this.utilityService.showError('Request Error', err.message);
+        }
+      })
   }
   getExperienceLevelData(){
-    this.apiService.getMaster(API_LIST.getExperienceLevelData).subscribe((response)=>{
-      this.experiences = response
-    })
+    this.apiService.getMaster(API_LIST.getExperienceLevelData).subscribe(
+      {
+        next:(response)=>{
+          this.experiences = response
+        },
+        error : (err:Error)=>{
+          this.utilityService.showError('Request Error', err.message);
+        }
+      })
   }
   getLocationData(){
-    this.apiService.getMaster(API_LIST.getLocationData).subscribe((response)=>{
-      this.locations = response
-    })
+    this.apiService.getMaster(API_LIST.getLocationData).subscribe(
+      {
+        next:(response)=>{
+          this.locations = response
+        },
+        error : (err:Error)=>{
+          this.utilityService.showError('Request Error', err.message);
+        }
+      })
   }
   selectRole(role:string){
     this.selectedRole = role;
@@ -82,25 +100,28 @@ export class SignupComponent  implements OnInit{
       });
     }
   }
-  signUpSubmission(){
-    if(this.signUpForm.invalid){
+  signUpSubmission() {
+    if (this.signUpForm.invalid) {
       this.signUpForm.markAllAsTouched();
       return;
     }
-     else{
-      this.apiService.signUp(API_LIST.signUp,this.signUpForm.value).subscribe((response:ApiResponse)=>{
-        if (response.data) {
-          this.utilityService.showSuccess('Signup Successful', response.message);
-          this.signUpForm.reset();
-          localStorage.setItem('userId',response.data.id)
-          localStorage.setItem('userName',response.data.name)
-          localStorage.setItem('roleId',response.data.roleId)
-          this.router.navigate(['user'])
-        }
-      },
-      (error) => {
-        this.utilityService.showError('Signup Error', error.error.message);
-      })
+    else {
+      this.apiService.signUp(API_LIST.signUp, this.signUpForm.value).subscribe(
+        {
+          next: (response) => {
+            this.utilityService.showSuccess('Signup Successful', response.message);
+            this.signUpForm.reset();
+            localStorage.setItem('userId', response.data.id)
+            localStorage.setItem('userName', response.data.name)
+            localStorage.setItem('roleId', response.data.roleId)
+            this.router.navigate(['user'])
+          },
+          error: (err) => {
+            console.log(err);
+            
+            this.utilityService.showError('Signup Error', err.error.message);
+          }
+        })
     }
   }
 }
