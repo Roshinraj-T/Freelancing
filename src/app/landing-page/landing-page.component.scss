@@ -1,35 +1,42 @@
-#home{
-    .menu{
-        display:flex;
+#home {
+    .menu {
+        display: flex;
         justify-content: space-between;
-        .logo{
-            .logo-name{
-                font-size : 42px;
+        border-bottom: 1px solid #2980b9;
+
+        .logo {
+            .logo-name {
+                font-size: 42px;
                 color: #2980b9;
                 margin: 0;
             }
         }
-        .registration{
+
+        .registration {
             display: flex;
             gap: 20px;
-            .login{
+
+            .login {
                 display: flex;
                 justify-content: center;
                 align-items: center;
-                p{
-                    padding: 5px 10px;
-                    color: #2980b9;
-                    border-radius: 18px;
-                    text-align: center;
-                    border: 1px solid #2980b9;
-                    &:hover{
-                        color: #FFFFFF;
-                        background-color: #2980b9;
-                        cursor: pointer;
-                    }
-                }                
+
+                // p {
+                //     padding: 5px 10px;
+                //     color: #2980b9;
+                //     border-radius: 18px;
+                //     text-align: center;
+                //     border: 1px solid #2980b9;
+
+                //     &:hover {
+                //         color: #FFFFFF;
+                //         background-color: #2980b9;
+                //         cursor: pointer;
+                //     }
+                // }
             }
         }
+
         // .menu-options{
         //     display: flex;
         //     align-items: center;
@@ -50,5 +57,48 @@
         //         }
         //     }
         // }
+    }
+
+    .container {
+        display: flex;
+        margin-top: 100px;
+
+        .landing-img {
+            width: 50%;
+
+            img {
+                width: 100%;
+                border-radius: 20px;
+            }
+        }
+        .slogan-section{
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            width: 50%;
+            .slogans{
+                .slogan{
+                    font-size: 25px;
+                }
+                .btn-section{
+                    margin-top: 10px;
+                    text-align: end;
+                    .get-start-btn{
+                        padding: 5px 10px;
+                        color: #2980b9;
+                        border-radius: 18px;
+                        text-align: center;
+                        border: 1px solid #2980b9;
+    
+                        &:hover {
+                            color: #FFFFFF;
+                            background-color: #2980b9;
+                            cursor: pointer;
+                        } 
+                    }
+                }
+            }
+        }
     }
 }

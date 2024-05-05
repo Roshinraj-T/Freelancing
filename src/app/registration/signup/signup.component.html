@@ -1,0 +1,117 @@
+<div id="sing-Up">
+    <div class="menu">
+        <div class="logo">
+            <p class="logo-name">
+                GIGHUB
+            </p>
+        </div>
+    </div>
+    <div class="role-section" *ngIf="roleVisible">
+        <div class="choose-role-section d-flex j-c">
+            <div class="role-section">
+                <div class="role" (click)="selectRole('Client')" [ngClass]="{ 'selected': selectedRole === 'Client' }">
+                    <p>
+                        Client,<br>hiring for a work
+                    </p>
+                </div>
+                <div class="role" (click)="selectRole('Freelancer')" [ngClass]="{ 'selected': selectedRole === 'Freelancer' }">
+                    <p>
+                        Freelancer,<br> Looking for work
+                    </p>
+                </div>
+            </div>
+        </div>
+        <div class="selected-role-section">
+            <span class="selected-role" (click)="createFormAction()"  *ngIf="selectedRole" >Join as {{selectedRole}}</span>
+            <span class="selected-role disable"  *ngIf="!selectedRole">Create an account</span>
+        </div>
+    </div>
+    <div class="sign-up-section" *ngIf="signUpFormVisible">
+        <div class="sign-up-section-form">
+            <form [formGroup]="signUpForm">
+                <div class="form-section">
+                    <div class="form-group">
+                        <label for="name">Name:</label>
+                        <div class="form-input">
+                            <input id="name" formControlName="name" pInputText />
+                            <div class="error-indication"
+                                *ngIf="signUpForm.get('name')?.invalid && signUpForm.get('name')?.touched">
+                                Name is required.
+                            </div>
+                        </div>
+                    </div>
+    
+                    <div class="form-group">
+                        <label for="email">Email:</label>
+                        <div class="form-input">
+                            <input id="email" formControlName="email" type="email" pInputText />
+                            <div class="error-indication"
+                                *ngIf="signUpForm.get('email')?.invalid && signUpForm.get('email')?.touched">
+                                Email is required.
+                            </div>
+                        </div>
+                    </div>
+    
+                    <div class="form-group">
+                        <label for="password">Password:</label>
+                        <div class="form-input">
+                            <input id="password" formControlName="password" type="password" pInputText />
+                            <div class="error-indication"
+                                *ngIf="signUpForm.get('password')?.invalid && signUpForm.get('password')?.touched">
+                                Password is required.
+                            </div>
+                        </div>
+                    </div>
+    
+                    <div class="form-group">
+                        <label for="phoneNumber">Phone Number:</label>
+                        <div class="form-input">
+                            <input id="phoneNumber" formControlName="phoneNumber" appDigitsOnly type="text"  maxlength="10" pInputText />
+                            <div class="error-indication"
+                                *ngIf="signUpForm.get('phoneNumber')?.invalid && signUpForm.get('phoneNumber')?.touched">
+                                Phone number is required.
+                            </div>
+                        </div>
+                    </div>
+    
+                    <div class="form-group">
+                        <label for="locationId">Location:</label>
+                        <div class="form-input">
+                            <p-dropdown id="locationId" formControlName="locationId" [options]="locations" optionLabel="name" optionValue="id" placeholder="Select a Location"></p-dropdown>
+                            <div class="error-indication"
+                                *ngIf="signUpForm.get('locationId')?.invalid && signUpForm.get('locationId')?.touched">
+                                Location is required.
+                            </div>
+                        </div>
+                    </div>
+    
+                    <div class="form-group" *ngIf="selectedRole === 'Freelancer'">
+                        <label for="professionId">Profession:</label>
+                        <div class="form-input">
+                            <p-dropdown id="professionId" formControlName="professionId" [options]="professions" optionLabel="name" optionValue="id" placeholder="Select a Profession"></p-dropdown>
+                            <div class="error-indication"
+                                *ngIf="signUpForm.get('professionId')?.invalid && signUpForm.get('professionId')?.touched">
+                                Profession is required.
+                            </div>
+                        </div>
+                    </div>
+    
+                    <div class="form-group" *ngIf="selectedRole === 'Freelancer'">
+                        <label for="experienceLevelId">Experience Level:</label>
+                        <div class="form-input">
+                            <p-dropdown id="experienceLevelId" formControlName="experienceLevelId" [options]="experiences" optionLabel="name" optionValue="id" placeholder="Select a Experience level"></p-dropdown>
+                            <div class="error-indication"
+                                *ngIf="signUpForm.get('experienceLevelId')?.invalid && signUpForm.get('experienceLevelId')?.touched">
+                                Experience level is required.
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="sign-up-btn">
+                    <p-button label="Cancel" (onClick)="roleVisible = true;signUpFormVisible = false;signUpForm.reset()"></p-button>
+                    <p-button class="custom-btn" label="Submit" (onClick)="signUpSubmission()"></p-button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

@@ -13,7 +13,7 @@ export class AppComponent implements OnInit{
     private apiService :ApiServiceService
   ){}
   ngOnInit(): void {
-    this.apiService.get(API_LIST.getDurationOption).subscribe(d=>console.log(d))
+    this.apiService.getMaster(API_LIST.getDurationOption).subscribe(d=>console.log(d))
 
   }
 

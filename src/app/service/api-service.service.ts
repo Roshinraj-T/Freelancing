@@ -1,6 +1,8 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { Observable } from 'rxjs';
 import { environment } from 'src/environment/environment';
+import { ApiResponse, IMaster } from '../core/interface';
 
 @Injectable({
   providedIn: 'root'
@@ -11,7 +13,11 @@ export class ApiServiceService {
     private http: HttpClient
   ) { }
 
-  get(apiEndpoint : string){
-    return this.http.get(environment.apiUrl + apiEndpoint,{})
+  getMaster(apiEndpoint : string) : Observable<IMaster[]> {
+    return this.http.get<IMaster[]>(environment.apiUrl + apiEndpoint)
+  }
+
+  signUp(apiEndpoint : string,data:any) : Observable <ApiResponse> {
+    return this.http.post<ApiResponse>(environment.apiUrl + apiEndpoint,data)
   }
 }
