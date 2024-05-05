@@ -1,0 +1,32 @@
+<div id="main-layout">
+    <div class="menu">
+        <div class="logo">
+            <p class="logo-name">
+                GIGHUB
+            </p>
+        </div>
+        <div class="main-menu">
+            <div 
+            (click)="selectedTab = index" 
+            class="menus" *ngFor="let item of tabs;let index  = index" 
+            [ngClass]="{ 'selected': selectedTab === index }"
+            [routerLink]="item.route"
+            >
+                <p>{{item.name}}</p>
+            </div>
+        </div>
+        <div class="menu-options">
+            <div class="notification">
+                <img class="notification-img" src="../../assets/icon/notification.svg" alt="">
+            </div>
+            <div class="profile" (click)="redirectToProfile()">
+                <div class="avatar" *ngIf="userName">
+                    {{userName.slice(0,1)[0]}}
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="container">
+        <router-outlet></router-outlet>
+    </div>
+</div>

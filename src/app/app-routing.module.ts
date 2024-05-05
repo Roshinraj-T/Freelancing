@@ -14,6 +14,9 @@ const routes: Routes = [
   ,{
     path : 'gighub',
     loadChildren : () => import('./registration/registration.module').then(m => m.RegistrationModule)
+  },{
+    path : 'user',
+    loadChildren : () => import('./user/user.module').then(m => m.UserModule)
   }
 ];
 

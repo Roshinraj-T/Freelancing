@@ -1,6 +1,7 @@
 import { HttpResponse } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 import { MessageService } from 'primeng/api';
 import { API_LIST } from 'src/app/core/apiList';
 import { ApiResponse, IMaster } from 'src/app/core/interface';
@@ -26,7 +27,8 @@ export class SignupComponent  implements OnInit{
   constructor (
     private formBuilder : FormBuilder,
     private utilityService : UtilServiceService,
-    private apiService : ApiServiceService
+    private apiService : ApiServiceService,
+    private router : Router
   ) {
   }
   ngOnInit(): void {
@@ -90,6 +92,10 @@ export class SignupComponent  implements OnInit{
         if (response.data) {
           this.utilityService.showSuccess('Signup Successful', response.message);
           this.signUpForm.reset();
+          localStorage.setItem('userId',response.data.id)
+          localStorage.setItem('userName',response.data.name)
+          localStorage.setItem('roleId',response.data.roleId)
+          this.router.navigate(['user'])
         }
       },
       (error) => {
