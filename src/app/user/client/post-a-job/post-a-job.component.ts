@@ -19,6 +19,7 @@ export class PostAJobComponent implements OnInit{
   experiences : IMaster[] = [];
   durationOptions : IMaster[] = [];
   jobTypes : IMaster[] = [];
+  userName : string | null = localStorage.getItem('userName')
   socket !:Socket;
   constructor (
     private formBuilder : FormBuilder,

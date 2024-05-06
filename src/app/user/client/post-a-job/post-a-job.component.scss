@@ -24,8 +24,8 @@
 }
 #post-a-job {
     .post-a-job-section {
-        margin-top: 200px;
-
+        margin-top: 100px;
+        display: flex;
         .slogan-section {
             display: flex;
             flex-direction: column;
@@ -56,6 +56,14 @@
                         }
                     }
                 }
+            }
+        }
+        .slogan-img-section{
+            width: 50%;
+            .slogan-img{
+                width: 100%;
+                border-radius: 20px;
+                box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
             }
         }
     }

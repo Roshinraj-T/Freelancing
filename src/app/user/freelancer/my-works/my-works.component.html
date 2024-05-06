@@ -15,6 +15,9 @@
                     <p class="job-name">
                         {{job.professionName}} Wanted
                     </p>
+                    <div class="heired" *ngIf="job.isSelected == true">
+                        Selected
+                    </div>
                 </div>
                 <p class="description">
                     {{job.description}}

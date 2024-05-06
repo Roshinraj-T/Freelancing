@@ -115,7 +115,7 @@ export class SignupComponent  implements OnInit{
             localStorage.setItem('userName', response.data.name)
             localStorage.setItem('roleId', response.data.roleId)
             if(localStorage.getItem('roleId') && (localStorage.getItem('roleId') == '1')){
-              this.router.navigate(['user/client]'])
+              this.router.navigate(['user/client'])
             } else{
               this.router.navigate(['user/freelancer'])
             }

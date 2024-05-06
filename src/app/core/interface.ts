@@ -24,6 +24,7 @@ export interface IJobs{
     date : string | Date;
     isApplied ?: string;
     freelancerId ?: number;
+    isSelected  ?: boolean;
 }
 
 export interface IApplicant{
