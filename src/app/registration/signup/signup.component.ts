@@ -46,7 +46,7 @@ export class SignupComponent  implements OnInit{
           this.professions = response
         },
         error : (err:Error)=>{
-          this.utilityService.showError('Request Error', err.message);
+          this.utilityService.showError('Request Failed', err.message);
         }
       })
   }
@@ -57,7 +57,7 @@ export class SignupComponent  implements OnInit{
           this.experiences = response
         },
         error : (err:Error)=>{
-          this.utilityService.showError('Request Error', err.message);
+          this.utilityService.showError('Request Failed', err.message);
         }
       })
   }
@@ -68,7 +68,7 @@ export class SignupComponent  implements OnInit{
           this.locations = response
         },
         error : (err:Error)=>{
-          this.utilityService.showError('Request Error', err.message);
+          this.utilityService.showError('Request Failed', err.message);
         }
       })
   }
@@ -106,7 +106,7 @@ export class SignupComponent  implements OnInit{
       return;
     }
     else {
-      this.apiService.signUp(API_LIST.signUp, this.signUpForm.value).subscribe(
+      this.apiService.post(API_LIST.signUp, this.signUpForm.value).subscribe(
         {
           next: (response) => {
             this.utilityService.showSuccess('Signup Successful', response.message);
@@ -114,7 +114,11 @@ export class SignupComponent  implements OnInit{
             localStorage.setItem('userId', response.data.id)
             localStorage.setItem('userName', response.data.name)
             localStorage.setItem('roleId', response.data.roleId)
-            this.router.navigate(['user'])
+            if(localStorage.getItem('roleId') && (localStorage.getItem('roleId') == '1')){
+              this.router.navigate(['user/client]'])
+            } else{
+              this.router.navigate(['user/freelancer'])
+            }
           },
           error: (err) => {
             console.log(err);

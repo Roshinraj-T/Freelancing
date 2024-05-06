@@ -4,6 +4,7 @@ import { CommonModule } from '@angular/common';
 import { FreelancerRoutingModule } from './freelancer-routing.module';
 import { FindAJobComponent } from './find-a-job/find-a-job.component';
 import { MyWorksComponent } from './my-works/my-works.component';
+import { SharedModule } from 'src/shared/shared.module';
 
 
 @NgModule({
@@ -14,7 +15,8 @@ import { MyWorksComponent } from './my-works/my-works.component';
   ],
   imports: [
     CommonModule,
-    FreelancerRoutingModule
+    FreelancerRoutingModule,
+    SharedModule
   ]
 })
 export class FreelancerModule { }

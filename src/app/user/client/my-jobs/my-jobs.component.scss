@@ -1,0 +1,109 @@
+#my-jobs{
+    .job-status-section{
+        display: flex;
+        gap: 20px;
+        margin-top: 20px;
+        .status{
+            padding: 10px;
+            border: 1px solid;
+            border-radius: 8px;
+            &:hover{
+                cursor: pointer;
+            }
+        }
+        .selected{
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+    }
+    .jobs-section{
+        margin-top: 20px;
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+        .job{  
+            padding: 10px;
+            border: 1px solid;
+            border-radius: 8px;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            .job-title{
+                border-bottom: 1px solid;
+                display: flex;
+                justify-content: space-between;
+                .job-name{
+                    font-size: 20px;
+                    font-weight: 700;
+                }
+                .heired{
+                    margin-right: 20px;
+                    color: green;
+                }
+                .view-applicant{
+                    margin-right: 20px;
+                    color: #2980b9;
+                    &:hover {
+                        cursor: pointer;
+                        text-decoration: underline;
+                    }
+                }
+            }
+            .job-details{
+                display: flex;
+                gap: 20px;
+                .job-det{
+                    display: flex;
+                    align-items: flex-end;
+                }
+            }
+            .other-details{
+                display: flex;
+            }
+            .date{
+                padding: 5px;
+                background-color: #297fb98b;
+                border-radius: 15px;
+            }
+        }
+    }
+    .title{
+        display: flex;
+        align-items: flex-end;
+        font-weight: 600;
+        .sub-title{
+        font-weight: 400;
+    
+        }
+    }
+
+}
+.no-data{
+    margin-top: 100px;
+    display: flex;
+    justify-content: center;
+}
+.applicant-section{
+    .applicant{
+        padding: 10px;
+        border-radius: 8px;
+        border: 1px solid;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        .applicant-details{
+            .title{
+                display: flex;
+                align-items: flex-end;
+                font-weight: 600;
+                .sub-title{
+                font-weight: 400;
+                }
+            } 
+        }
+    }
+    .applicant-Action{
+        &:hover {
+            cursor: pointer;
+        }
+    }
+}

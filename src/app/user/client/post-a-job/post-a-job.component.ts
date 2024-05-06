@@ -1,10 +1,11 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { API_LIST } from 'src/app/core/apiList';
 import {  IMaster } from 'src/app/core/interface';
 import { ApiServiceService } from 'src/app/service/api-service.service';
 import { UtilServiceService } from 'src/app/utils/util-service.service';
-
+import { Socket, io } from "socket.io-client";
+import { environment } from 'src/environment/environment';
 @Component({
   selector: 'app-post-a-job',
   templateUrl: './post-a-job.component.html',
@@ -18,6 +19,7 @@ export class PostAJobComponent implements OnInit{
   experiences : IMaster[] = [];
   durationOptions : IMaster[] = [];
   jobTypes : IMaster[] = [];
+  socket !:Socket;
   constructor (
     private formBuilder : FormBuilder,
     private apiService : ApiServiceService,
@@ -26,7 +28,6 @@ export class PostAJobComponent implements OnInit{
     this.postJobForm = this.formBuilder.group({
       professionId: [null, Validators.required],
       description : ['',Validators.required],
-      jobTypeId : [null, Validators.required],
       durationOptionId : [null,Validators.required],
       clientId : [localStorage.getItem('userId')],
       experienceLevelId: [null, Validators.required],
@@ -37,6 +38,7 @@ export class PostAJobComponent implements OnInit{
   }
   ngOnInit(): void {
     this.getMaters();
+    this.socketConnection();
   }
   getMaters(){
     this.getProfessionData();
@@ -52,7 +54,7 @@ export class PostAJobComponent implements OnInit{
           this.professions = response
         },
         error : (err:Error)=>{
-          this.utilityService.showError('Request Error', err.message);
+          this.utilityService.showError('Request Failed', err.message);
         }
       })
   }
@@ -63,7 +65,7 @@ export class PostAJobComponent implements OnInit{
           this.experiences = response
         },
         error : (err:Error)=>{
-          this.utilityService.showError('Request Error', err.message);
+          this.utilityService.showError('Request Failed', err.message);
         }
       })
   }
@@ -74,7 +76,7 @@ export class PostAJobComponent implements OnInit{
           this.locations = response
         },
         error : (err:Error)=>{
-          this.utilityService.showError('Request Error', err.message);
+          this.utilityService.showError('Request Failed', err.message);
         }
       })
   }
@@ -85,7 +87,7 @@ export class PostAJobComponent implements OnInit{
           this.durationOptions = response
         },
         error : (err:Error)=>{
-          this.utilityService.showError('Request Error', err.message);
+          this.utilityService.showError('Request Failed', err.message);
         }
       })
   }
@@ -93,7 +95,7 @@ export class PostAJobComponent implements OnInit{
     this.apiService.getMaster(API_LIST.getJobType).subscribe((response)=>{
       this.jobTypes = response
     },(error) => {
-      this.utilityService.showError('Request Error', error.error.message);
+      this.utilityService.showError('Request Failed', error.error.message);
     })
   }
   lengthChecker(length :number){
@@ -107,25 +109,38 @@ export class PostAJobComponent implements OnInit{
       return true
     }
   }
-  postAJobAction(){
-    console.log("ppppppppppppppppppppppppppp");
-    
-    if(this.postJobForm.invalid){
+  postAJobAction() {
+    if (this.postJobForm.invalid) {
       this.postJobForm.markAllAsTouched();
-      return ;
-    }else{
-      this.apiService.postAJob(API_LIST.postAJob,this.postJobForm.value).subscribe(
+      return;
+    } else {
+      this.apiService.post(API_LIST.postAJob, this.postJobForm.value).subscribe(
         {
-          next:(response)=>{
+          next: (response) => {
             this.postJobForm.reset();
             this.postJobVisible = false;
-            this.utilityService.showSuccess('Request Success',response.message)
+            this.utilityService.showSuccess('Request Success', response.message)
           },
-          error : (err:Error)=>{
-            this.utilityService.showError('Request Error', err.message);
+          error: (err: Error) => {
+            this.utilityService.showError('Request Failed', err.message);
           }
         }
-)
+      )
     }
   }
+  checkJobDuration(event :number){
+    if(event == 3){
+      this.postJobForm.addControl('jobTypeId',new FormControl(null, Validators.required))
+    }else if (event != 3){
+      this.postJobForm.removeControl('jobTypeId')
+    }
+  }
+  socketConnection() {
+    const socket = io(environment.socketUrl);
+    this.socket = socket;
+    socket.emit('notification', {})
+    socket?.on("notification_result", (data: { isJobComplete: boolean }) => {
+
+    })
+    }
 }

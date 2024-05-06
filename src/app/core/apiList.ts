@@ -6,5 +6,11 @@ export const API_LIST = {
     'signUp' : 'registration/signUp',
     'postAJob' : 'user/postAJob',
     'getJobType' : 'user/getJobType',
-    'getMyJobs' : 'user/getMyJobs'
+    'getClientJobs' : 'user/getClientJobs',
+    'getAllJobs' : 'user/getAllJobs',
+    'applyJob' : 'user/applyJob',
+    'getNotification' : 'user/getNotification',
+    'getFreelancerWork' : 'user/getFreelancerWork',
+    'getApplicantDetails': 'user/getApplicantDetails',
+    'acceptApplication' : 'user/acceptApplication'
 }

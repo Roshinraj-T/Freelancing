@@ -20,12 +20,11 @@ export class ApiServiceService {
   getById(apiEndpoint : string,id?:string): Observable <ApiResponse>{
     return this.http.get<ApiResponse>(environment.apiUrl + apiEndpoint+`/${id}`)
   }
-
-  signUp(apiEndpoint : string,data:any) : Observable <ApiResponse> {
-    return this.http.post<ApiResponse>(environment.apiUrl + apiEndpoint,data)
+  get(apiEndpoint : string,queryParams ?: any): Observable <ApiResponse>{
+    return this.http.get<ApiResponse>(environment.apiUrl + apiEndpoint,{params: queryParams})
   }
 
-  postAJob(apiEndpoint : string,data:any): Observable <ApiResponse>{
+  post(apiEndpoint : string,data:any) : Observable <ApiResponse> {
     return this.http.post<ApiResponse>(environment.apiUrl + apiEndpoint,data)
   }
 }

@@ -30,3 +30,63 @@
         <router-outlet></router-outlet>
     </div>
 </div>
+<p-dialog header="New Job" [draggable]="false" [modal]="true" [(visible)]="notificationVisible" [style]="{width: '50vw'}">
+    <div class="job" *ngIf="job">
+        <div class="job-title">
+            <p class="job-name">
+                {{job.professionName}} Wanted
+            </p>
+            <div class="apply">
+                <div class="applied" *ngIf="job.isApplied == '1'">
+                    Applied!
+                </div>
+                <div class="application" *ngIf="job.isApplied == '0'"  (click)="applyJobAction(job.id)">
+                    Apply
+                </div>
+            </div>
+        </div>
+        <p class="description">
+            {{job.description}}
+        </p>
+        <div class="job-details">
+            <div class="job-det">
+                <img src="../../../../assets/icon/location-pin-svgrepo-com.svg" alt="">
+                <p>
+                    {{job.locationName}}
+                </p>
+            </div>
+            <div class="job-det">
+                <img src="../../../../assets/icon/user-svgrepo-com.svg" alt="">
+                <p>
+                    {{job.experienceLevelName}}
+                </p>
+            </div>
+            <p class="title">
+                Duration : 
+                <span class="sub-title">
+                    {{job.durationName}}
+                </span>
+            </p>
+            <p class="title" *ngIf="job.jobTypeName">
+                Job Type : 
+                <span class="sub-title">
+                    {{job.jobTypeName}}
+                </span>
+            </p>
+        </div>
+        <div class="other-details">
+
+        </div>
+        <p class="title">
+            Address : 
+            <span class="sub-title">
+                {{job.address}}
+            </span>
+        </p>
+        <div >
+            <span class="date">
+                {{job.date}}
+            </span>
+        </div>
+    </div>
+</p-dialog>

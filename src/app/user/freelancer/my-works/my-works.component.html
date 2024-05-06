@@ -1,1 +1,70 @@
-<p>my-works works!</p>
+<div id="my-jobs">
+    <div class="job-status-section">
+        <div class="status" *ngFor="let item of jobStatus;let index = index" 
+        (click)="selectedStatus = index" 
+        [ngClass]="{ 'selected': selectedStatus === index }"
+        [ngStyle]="{'color' : item.color,'border-color' : item.color}"
+        >
+            {{item.name}}
+        </div>
+    </div>
+    <div>
+        <div *ngIf="jobs.length > 0"class="jobs-section">
+            <div class="job" *ngFor="let job of jobs">
+                <div class="job-title">
+                    <p class="job-name">
+                        {{job.professionName}} Wanted
+                    </p>
+                </div>
+                <p class="description">
+                    {{job.description}}
+                </p>
+                <div class="job-details">
+                    <div class="job-det">
+                        <img src="../../../../assets/icon/location-pin-svgrepo-com.svg" alt="">
+                        <p>
+                            {{job.locationName}}
+                        </p>
+                    </div>
+                    <div class="job-det">
+                        <img src="../../../../assets/icon/user-svgrepo-com.svg" alt="">
+                        <p>
+                            {{job.experienceLevelName}}
+                        </p>
+                    </div>
+                    <p class="title">
+                        Duration : 
+                        <span class="sub-title">
+                            {{job.durationName}}
+                        </span>
+                    </p>
+                    <p class="title" *ngIf="job.jobTypeName">
+                        Job Type : 
+                        <span class="sub-title">
+                            {{job.jobTypeName}}
+                        </span>
+                    </p>
+                </div>
+                <div class="other-details">
+    
+                </div>
+                <p class="title">
+                    Address : 
+                    <span class="sub-title">
+                        {{job.address}}
+                    </span>
+                </p>
+                <div >
+                    <span class="date">
+                        {{job.date}}
+                    </span>
+                </div>
+            </div>
+        </div>
+        <div class="no-data" *ngIf="jobs.length == 0">
+            <p>
+                No Data
+            </p>
+        </div>
+    </div>
+</div>
